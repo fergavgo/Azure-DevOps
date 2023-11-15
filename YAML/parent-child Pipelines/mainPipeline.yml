@@ -19,9 +19,9 @@ parameters:
 
 
 - name: listParameter
-  displayName: "Test Plan"
+  displayName: "listParameter"
   type: string
-  default: Login
+  default: Item 1
   values:
   - Item 1
   - Item 2
