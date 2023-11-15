@@ -82,3 +82,13 @@ jobs:
       booleanParameter: $(booleanParameter)
       Something_In_Group: $(Something_In_Group)
 ```
+
+
+Now, in the `child/Pipeline.yaml` you'll see some task that are using the parameters/variables we passed from the Parent Pipeline:
+
+```
+Write-host $(booleanParameter) $(listParameter)
+Write-host $(numberParameter) $(Something_In_Group)
+```
+
+We can even push further and pass this variables to ANOTHER in a Task. For instance, a Powershell script that execute a JMeter test plan ;)
