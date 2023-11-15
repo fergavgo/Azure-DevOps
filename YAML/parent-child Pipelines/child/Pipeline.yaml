@@ -1,0 +1,17 @@
+ steps:
+
+  - checkout: self
+    fetchDepth: 1
+    
+  - powershell: |
+      if (Test-Path "C:\Program Files\apache-jmeter-5.5\bin\") {
+      # Si la carpeta existe:
+      Write-host $(booleanParameter) $(listParameter) -f Green
+      }
+
+      else {
+      Write-host $(numberParameter) $(Something_In_Group) -f Red
+      }
+    failOnStderr: true
+    workingDirectory: '$(Agent.HomeDirectory)'
+    displayName: 'This is a Test'

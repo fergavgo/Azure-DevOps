@@ -1,0 +1,58 @@
+
+trigger:
+- none # Or whatever you need
+
+parameters:
+- name: Environment
+  displayName: 'Environment to Deploy'
+  type: string
+  default: Development
+  values:
+  - Development
+  - UAT
+  - Production
+
+- name: numberParameter
+  displayName: "Write a number"
+  type: string
+  default: 1
+
+
+- name: listParameter
+  displayName: "Test Plan"
+  type: string
+  default: Login
+  values:
+  - Item 1
+  - Item 2
+  - Item 3
+  - Item 4
+  - Item ...
+
+
+- name: booleanParameter
+  displayName: "This can be false or true"
+  type: boolean
+  default: false
+
+variables:
+  - group: ${{ parameters.Environment }}
+
+  - name: numberParameter
+    value: ${{ parameters.numberParameter }}
+  - name: listParameter
+    value: ${{ parameters.listParameter }}
+  - name: booleanParameter
+    value: ${{ parameters.booleanParameter }}
+
+
+
+jobs:
+
+  - template: ../child/Pipeline.yaml
+    parameters:
+      numberParameter: $(numberParameter)
+      listParameter: $(listParameter)
+      booleanParameter: $(booleanParameter)
+      Something_In_Group: $(Something_In_Group)
+    
